@@ -1,2 +1,2 @@
 # BOChaMM
-Bayesian Optimisation for the Characterisation of Mixed Modes.
+**B**ayesian **O**ptimisation for the **Cha**racterisation of **M**ixed **M**odes.
