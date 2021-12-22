@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+turbo = {editable = true, git = "https://github.com/uber-research/TuRBO"}
+matplotlib = "*"
+numpy = "*"
+pandas = "*"
+scipy = "*"
+astropy = "*"
+sloscillations = {editable = true, git = "https://github.com/jsk389/sloscillations"}
+jupyterlab = "*"
+scikit-learn = "*"
+tqdm = "*"
+bochamm = {editable = true, path = "."}
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
