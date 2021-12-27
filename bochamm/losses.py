@@ -1,15 +1,30 @@
 import numpy as np
+import pandas as pd
 
 from astropy.timeseries import LombScargle
-from sloscillations import mixed_modes_utils
+from sloscillations import frequencies, mixed_modes_utils
+
+from typing import List, Optional
 
 
 class PSXPS:
-    def __init__(self, pds_l023_removed, freqs, init_dpi, lower_tau_lim=20, upper_tau_lim=400, harmonic=False):
+    def __init__(self, pds_l023_removed: pd.DataFrame, 
+                 freqs: frequencies.Frequencies, init_dpi: float, 
+                 lower_tau_lim: float=20.0, upper_tau_lim: float=400.0, 
+                 harmonic: bool=False, 
+                 lb: Optional[List[float]]=None,
+                 ub: Optional[List[float]]=None) -> None:
+
         self.freqs = freqs
         self.pds_l023_removed = pds_l023_removed
-        self.lb = np.array([0.8*init_dpi, 0])
-        self.ub = np.array([1.2*init_dpi, 0.8])
+        if lb is None:
+            self.lb = np.array([0.8*init_dpi, 0])
+        else:
+            self.lb = lb
+        if ub is None:
+            self.ub = np.array([1.2*init_dpi, 0.8])
+        else:
+            self.ub = ub
         self.lower_tau_lim = lower_tau_lim
         self.upper_tau_lim = upper_tau_lim
         self.harmonic = harmonic

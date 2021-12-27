@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-turbo = {editable = true, git = "https://github.com/uber-research/TuRBO"}
 matplotlib = "*"
 numpy = "*"
 pandas = "*"
@@ -15,6 +14,10 @@ jupyterlab = "*"
 scikit-learn = "*"
 tqdm = "*"
 bochamm = {editable = true, path = "."}
+turbo = {git = "https://github.com/uber-research/TuRBO"}
+pygmmis = "*"
+kneed = "*"
+hdbscan = "*"
 
 [dev-packages]
 
