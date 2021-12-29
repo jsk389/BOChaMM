@@ -16,7 +16,7 @@ class PSxPSOptimisation:
         self.freqs = freqs
 
 
-    def run_optimisation(self, init_dpi, max_evals=1000, lower_tau_lim=20, upper_tau_lim=400, harmonic=False, use_TurboM=True):
+    def run_optimisation(self, init_dpi, max_evals=1000, lower_tau_lim=20, upper_tau_lim=400, harmonic=False, use_TurboM=True, verbose=True):
         #, turbo_kwargs=None):
         # TODO: Allow turbo kwargs to be set from function
         # Extract kwargs
@@ -41,7 +41,7 @@ class PSxPSOptimisation:
             n_init = 100,  # Number of initial bounds from an Latin hypercube design
             max_evals = max_evals,  # Maximum number of evaluations
             batch_size = 25,  # How large batch size TuRBO uses
-            verbose = True,  # Print information from each batch
+            verbose = verbose,  # Print information from each batch
             use_ard = True,  # Set to true if you want to use ARD for the GP kernel
             max_cholesky_size = 2000,  # When we switch from Cholesky to Lanczos
             n_training_steps = 50,  # Number of steps of ADAM to learn the hypers
@@ -53,7 +53,7 @@ class PSxPSOptimisation:
         
         init_time = timer.time()
         turbo1.optimize()
-        print('Elapsed Time: ', timer.time()-init_time)
+        #print('Elapsed Time: ', timer.time()-init_time)
 
         X = turbo1.X  # Evaluated points
         fX = turbo1.fX  # Observed values
@@ -61,5 +61,5 @@ class PSxPSOptimisation:
         ind_best = np.argmin(fX)
         f_best, x_best = fX[ind_best], X[ind_best, :]
 
-        print("Best value found:\n\tf(x) = %.3f\nObserved at:\n\tx = %s" % (f_best, np.around(x_best, 3)))
+        #print("Best value found:\n\tf(x) = %.3f\nObserved at:\n\tx = %s" % (f_best, np.around(x_best, 3)))
         return X, fX, turbo1

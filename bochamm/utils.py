@@ -41,14 +41,25 @@ def compute_PS_PS(freq, power,  DPi1, q, freqs, lower_tau_lim=1, upper_tau_lim=4
                 }
     # Make computation - in our case this is for the computation of zeta
     freqs(params)
+    #print(freqs.l0_freqs)
+    if freq.min() < freqs.l0_freqs.min():
+        power = power[freq >= freqs.l0_freqs.min()]
+        zeta = freqs.zeta[freq >= freqs.l0_freqs.min()]
+        freq = freq[freq >= freqs.l0_freqs.min()]
+    else:
+        zeta = freqs.zeta
+    #print("PROBLEM IN ZETA COMPUTATION IF ZETA GOES BELOW N=1?!")
     # Compute tau from the zeta value just computed
     new_frequency, tau, zeta = mixed_modes_utils.stretched_pds(freq, 
-                                                               freqs.zeta)
+                                                               zeta)
 
     # If the search range isn't given then default to frequency range 
     # corresponding to period range of 20-400s
     #if search_range is None:
     f = np.arange(1/(upper_tau_lim), 1/(lower_tau_lim), 0.1/tau.max())
+    # import matplotlib.pyplot as plt
+    # plt.plot(freq, freqs.zeta)
+    # plt.show()
     #else:
     #    f = np.arange(1/search_range[1], 1/search_range[0], 0.1/tau.max())
 

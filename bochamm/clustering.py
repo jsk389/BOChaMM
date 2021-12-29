@@ -10,18 +10,19 @@ class Clustering:
     Run clustering on points from Bayesian Optimisation
     """
 
-    def __init__(self, data: np.ndarray):
+    def __init__(self, data: np.ndarray, loss: np.ndarray):
 
         self.data = data
+        self.loss = loss
 
     def __call__(self, eps: Optional[float]=None, min_samples: int=30,
                     n_neighbours: int=3, verbose: bool=False, plot: bool=False):
 
         self.clustering_algorithm = self.cluster(eps=eps, min_samples=min_samples, n_neighbours=n_neighbours, verbose=verbose, plot=plot)
 
-        reduced_data, labels = self.reduce_data()
+        reduced_data, reduced_loss, labels = self.reduce_data()
 
-        return reduced_data, labels
+        return reduced_data, reduced_loss, labels
 
     def reduce_data(self):
         """
@@ -29,7 +30,7 @@ class Clustering:
         """
         
         cond = self.clustering_algorithm.labels_ >= 0
-        return self.data[cond, :], self.clustering_algorithm.labels_[cond]
+        return self.data[cond, :], self.loss[cond], self.clustering_algorithm.labels_[cond]
 
 
     def cluster(self, eps: Optional[float]=None, min_samples: int=30,
@@ -60,8 +61,8 @@ class Clustering:
         idxs = self.find_elbow(XX, self.get_data_radiant(XX))   
 
         eps = XX[idxs, 1]
-        if verbose:
-            print(f"Chosen epsilon value is {eps}")    
+        #if verbose:
+        #    print(f"Chosen epsilon value is {eps}")    
         if plot:
             plt.plot(XX[:,0], XX[:,1])
             plt.axhline(XX[idxs,1], color='g', linestyle='--', label=r'"Optimal" epsilon')

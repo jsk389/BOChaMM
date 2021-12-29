@@ -52,13 +52,13 @@ class Thresholding:
         return -interp_thresh
 
     def reduce_data(self, threshold: float):
-        return self.data[(-self.fX > threshold), :]      
+        return self.data[(-self.fX > threshold), :], self.fX[(-self.fX > threshold)]
 
     def __call__(self, return_threshold: bool=True, plot: bool=False):
 
         thresh = self.find_threshold(plot=plot)
-        reduced_data = self.reduce_data(thresh)
+        reduced_data, reduced_loss = self.reduce_data(thresh)
         if return_threshold:
-            return reduced_data, thresh
+            return reduced_data, reduced_loss, thresh
         else:
             return reduced_data
