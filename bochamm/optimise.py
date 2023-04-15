@@ -2,7 +2,7 @@ import numpy as np
 import time as timer
 
 from . import losses
-from turbo import Turbo1, TurboM
+from turbo.turbo import Turbo1, TurboM
 
 class PSxPSOptimisation:
     """

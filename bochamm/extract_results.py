@@ -6,7 +6,7 @@ from . import (
 )
 
 from collections import namedtuple
-from turbo import turbo_1, turbo_m
+from turbo.turbo import turbo_1, turbo_m
 from typing import Union
 
 Results = namedtuple('Results', ['extraction_class', 'reduced_data', 'reduced_loss', 'threshold', 'reduced_cluster_labels'])
