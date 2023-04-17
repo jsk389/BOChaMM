@@ -65,8 +65,7 @@ class Clustering:
         #    print(f"Chosen epsilon value is {eps}")    
         if plot:
             plt.plot(XX[:,0], XX[:,1])
-            plt.axhline(XX[idxs,1], color='g', linestyle='--', label=r'"Optimal" epsilon')
-            plt.axhline(XX[idxs,1], color='r', linestyle='--')
+            plt.axhline(XX[idxs,1], color='r', linestyle='--', label=r'"Optimal" epsilon')
             plt.xlabel(r'Sorted Index', fontsize=18)
             plt.ylabel(r'Distance to 3rd nearest neighbour', fontsize=18)
             plt.legend(loc='best')
