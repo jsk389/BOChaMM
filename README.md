@@ -14,9 +14,12 @@ BOChaMM uses the [TuRBO](https://github.com/uber-research/TuRBO) algorithm for o
 
 **TODO:**
 
+**Remove TuRBO repo nesting**
 
 **Include final result table**
 
 **Do we want to include a section in Part 2 notebook about doing mode ID?**
 
 **Finish write up**
+
+**Binder notebook example**
