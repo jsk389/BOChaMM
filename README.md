@@ -4,9 +4,22 @@
 The following schematic demonstrates the optimization procedures involved in BoCHaMM. 
 
 <img src="assets/flowchart.png" alt= “” width=380 height=680>
+<<<<<<< HEAD
+
+BOChaMM uses the [TuRBO](https://github.com/uber-research/TuRBO) algorithm for optimization, with a quick preview on how it applies to the PSxPS task shown in the following: 
+=======
+>>>>>>> 7b1a929be893b19d24057bcbc92594d26bcaa72b
 
 BOChaMM uses the [TuRBO](https://github.com/uber-research/TuRBO) algorithm for optimization, with a quick preview on how it applies to the PSxPS task shown in the following: 
 
 ![Turbo turbo turbo wheeeeee.](https://thumbs.gfycat.com/LinedPleasantHypsilophodon-size_restricted.gif)
 
 
+**TODO:**
+
+
+**Include final result table**
+
+**Do we want to include a section in Part 2 notebook about doing mode ID?**
+
+**Finish write up**
