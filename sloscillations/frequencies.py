@@ -56,27 +56,16 @@ class Frequencies(object):
         # Update attributes from kwargs
         self.__dict__.update(kwargs)
 
-        #self.delta_nu = delta_nu
-        #self.radial_order_range = radial_order_range
-
         if self.delta_nu is None:
             self.delta_nu = scalings.delta_nu(self.numax)
-        #else:
-        #    self.delta_nu = delta_nu
-
         # Epsilon
         if self.epsilon_p is None:
             self.epsilon_p = scalings.epsilon_p(self.delta_nu)
-        #else:
-        #    self.epsilon_p = epsilon_p
         # Alpha
         if self.alpha is None:
             self.alpha = scalings.alpha(self.delta_nu)
-        #else:
-        #    self.alpha = alpha
 
         
-       
         # use np.floor or ?
         self.n_max = (self.numax/self.delta_nu) - self.epsilon_p
         # Radial order range
@@ -118,14 +107,6 @@ class Frequencies(object):
         if self.split_core is None:
             self.calc_rot = False
 
-        #tmp = self.__dict__
-
-        #tmp = {k: (v.tolist() if type(v) == np.ndarray else v) for k, v in tmp.items()}
-
-        #with open('freqs_data.json', 'w') as f:
-        #    yaml.dump(tmp, f)#, ensure_ascii=False, indent=4)
-        #sys.exit()
-        #self.freq_attrs = self.__dict__
 
     def asymptotic_expression(self, l, d0l=0, n=None):
         """
@@ -188,10 +169,6 @@ class Frequencies(object):
         """
         Generate l=1 nominal p-mode frequencies
         """
-        #n = np.arange(np.floor(self.n_max) + self.radial_order_range[0],
-        #                        np.floor(self.n_max) + self.radial_order_range[1]+1,
-        #                        1)
-        #print(n, self.n)
 
         self.l1_nom_freqs, self.l1_l = self.asymptotic_expression(l=1, d0l=self.d01, n=self.n)
         tmp = pd.DataFrame(data=np.c_[self.n.astype(int), 
@@ -213,14 +190,8 @@ class Frequencies(object):
                                                                                        coupling,
                                                                                        return_order=True,
                                                                                        method=self.calc_method)  
-        #plt.plot(self.l1_mixed_freqs, self.l1_zeta)
-        #plt.show()
-        #if len(self.l1_nom_freqs) > 1:                           
-        #print("TODO: Need to fix issue where frequencies are generated outside frequency array given!")
-        #cond = (self.l1_mixed_freqs > self.l0_freqs.min()) & (self.l1_mixed_freqs < self.l0_freqs.max())
+ 
         cond = (self.l1_mixed_freqs > self.frequency.min()) & (self.l1_mixed_freqs < self.frequency.max())
-        #else:
-        #cond = (self.l1_mixed_freqs > self.l1_nom_freqs - self.delta_nu/2) & (self.l1_mixed_freqs < self.l1_nom_freqs + self.delta_nu/2)
         self.l1_mixed_freqs = self.l1_mixed_freqs[cond]
         self.l1_g_freqs = self.l1_g_freqs[cond]
         self.l1_ng = self.l1_ng[cond]
@@ -247,7 +218,6 @@ class Frequencies(object):
         Generate rotational splittings
         """
 
-        #print(self.calc_method)
 
         if l == 1:
             if method == 'simple':
@@ -271,36 +241,8 @@ class Frequencies(object):
                                               self.l1_zeta], 
                                    columns=['n', 'l', 'm', 'frequency', 'n_g', 'zeta'])         
                 self.mode_data = self.mode_data.append(tmp, ignore_index=True, sort=True)
-
-            elif method == 'Mosser':
-                # User method from Mosser et al. (2019)
-                # Stretch pds for given DPi1, coupling and eps_g values
-                zeta_func = mixed_modes.zeta_interp(self.frequency,
-                                                          self.l1_nom_freqs, 
-                                                          self.delta_nu, 
-                                                          DPi1, 
-                                                          coupling, 
-                                                          eps_g)
-                self.l1_mixed_freqs_p1, self.l1_mixed_freqs_n1, \
-                    self.l1_int_zeta_p, self.l1_int_zeta_n = mixed_modes.l1_theoretical_rot_M(self.l1_mixed_freqs,
-                                                                                              split_core, 
-                                                                                              zeta_func)
-                tmp = pd.DataFrame(data=np.c_[np.arange(0, len(self.l1_mixed_freqs), 1), 
-                                    [1]*len(self.l1_mixed_freqs), 
-                                    [+1]*len(self.l1_mixed_freqs),
-                                    self.l1_mixed_freqs_p1,
-                                    self.l1_int_zeta_p], 
-                    columns=['n', 'l', 'm', 'frequency', 'zeta'])   
-                self.mode_data = self.mode_data.append(tmp, ignore_index=True, sort=True)                
-                tmp = pd.DataFrame(data=np.c_[np.arange(0, len(self.l1_mixed_freqs), 1), 
-                                              [1]*len(self.l1_mixed_freqs), 
-                                              [-1]*len(self.l1_mixed_freqs),
-                                              self.l1_mixed_freqs_n1,
-                                              self.l1_int_zeta_n], 
-                                columns=['n', 'l', 'm', 'frequency', 'zeta'])         
-                self.mode_data = self.mode_data.append(tmp, ignore_index=True, sort=True)
             else:
-                sys.exit("Oh dear, method keyword isn't correct!")
+                sys.exit("Other methods not implemented!")
         else:
             pass
 
@@ -433,10 +375,6 @@ class Frequencies(object):
                                              nom_p = self.l1_nom_freqs,
                                             )
 
-            #plt.plot(self.frequency, self.zeta)
-            #plt.plot(self.l1_mixed_freqs, self.l1_zeta, '.')
-            #plt.show()
-            #sys.exit()
             if self.calc_rot:
                 # l=1 rotation
                 if self.method == 'simple':
