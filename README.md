@@ -1,6 +1,8 @@
 # BOChaMM
 **B**ayesian **O**ptimisation for the **Cha**racterisation of **M**ixed **M**odes.
 
+### This branch includes all data for the entire sample. Please use the other branch if you are interested in the code but do not want to download everything (i.e., peakbagged modes, samples from BayesOpt).
+
 The following schematic demonstrates the optimization procedures involved in BoCHaMM. 
 
 <img src="assets/flowchart.png" alt= “” width=380 height=680>
