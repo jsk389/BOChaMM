@@ -2,16 +2,11 @@
 **B**ayesian **O**ptimisation for the **Cha**racterisation of **M**ixed **M**odes.
 
 
-## Accessing the code and repository
+## Accessing the repository and code
+Execute the following to your base directory of choice:
 
-### This branch includes all data for the entire sample. Run the following:
 ```bash
-git clone https://github.com/jsk389/BOChaMM.git --branch main --single-branch
-```
-
-### If you do not want to download all data products (i.e., peakbagged modes, samples from BayesOpt), access the alternate branch by running the following:
-```bash
-git clone https://github.com/jsk389/BOChaMM.git --branch devel --single-branch
+git clone https://github.com/jsk389/BOChaMM.git
 ```
 
 ## Main directories
@@ -20,6 +15,9 @@ git clone https://github.com/jsk389/BOChaMM.git --branch devel --single-branch
 3. `results/images/` -- Contains plots of stretched echelle diagrams of our fits. 
 4. `results/samples/` -- Contains samples from the Bayesian optimizer for the forward modelling step. See the notebooks on how to use these.
 5. `results/tables/` -- Summary of results from the paper.
+
+
+### Due to the large volume of the data products (peakbagged modes, BayesOpt samples, etc.), we have migrated the full dataset to Zenodo, with a few examples in the existing repo folders. Get the full data [here](https://github.com/uber-research/TuRBO).
 
 ## Visualization
 
@@ -35,11 +33,11 @@ BOChaMM uses the [TuRBO](https://github.com/uber-research/TuRBO) algorithm for o
 
 ## To-do-list
 
-- [ ] Binder notebook
-- [ ] Package code and make docs
-- [ ] Proper import to `sloscillations` repo
-- [ ] Git LFS support
 - [ ] High-level version of notebooks
+- [ ] Notebook for producing plots in paper
+- [ ] Proper import to `sloscillations` repo
+- [ ] Package code and make docs
+- [ ] Binder notebook
 
 ## Reference
 
