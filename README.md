@@ -37,7 +37,7 @@ BOChaMM uses the [TuRBO](https://github.com/uber-research/TuRBO) algorithm for o
 - [ ] Notebook for producing plots in paper
 - [ ] Proper import to `sloscillations` repo
 - [ ] Package code and make docs
-- [ ] Binder notebook
+- [ ] Binder notebooks
 
 ## Reference
 
