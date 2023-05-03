@@ -17,7 +17,7 @@ git clone https://github.com/jsk389/BOChaMM.git
 5. `results/tables/` -- Summary of results from the paper.
 
 
-### Due to the large volume of the data products (peakbagged modes, BayesOpt samples, etc.), we have migrated the full dataset to Zenodo, with a few examples in the existing repo folders. Get the full data [here](https://github.com/uber-research/TuRBO).
+### Due to the large volume of the data products (peakbagged modes, BayesOpt samples, etc.), we have migrated the full dataset to Zenodo, with a few examples in the existing repo folders. Get the full data [here](https://zenodo.org/record/7888633).
 
 ## Visualization
 
